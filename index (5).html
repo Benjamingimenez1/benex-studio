@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benex Studio — Páginas Web que Convierten</title>
+<meta name="description" content="Diseño y desarrollo web premium. Consigue más clientes con páginas web modernas, rápidas y optimizadas para conversión.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --violet: #6B3FA0;
+    --violet-dark: #3D1F6B;
+    --violet-deeper: #1E0A3C;
+    --violet-glow: rgba(107, 63, 160, 0.18);
+    --violet-accent: #9B6FD4;
+    --black: #080810;
+    --near-black: #0E0E1A;
+    --surface: #13131F;
+    --surface-2: #1A1A2E;
+    --border: rgba(255,255,255,0.07);
+    --border-violet: rgba(107,63,160,0.35);
+    --text: #F0EEF8;
+    --text-muted: rgba(240,238,248,0.55);
+    --text-dim: rgba(240,238,248,0.3);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5%;
+    background: rgba(8,8,16,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 30%, var(--violet-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--violet) !important;
+    color: #fff !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    font-size: 0.88rem !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--violet-accent) !important; transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 1.5px; background: var(--text); display: block; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 9rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(107,63,160,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,63,160,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(107,63,160,0.25) 0%, transparent 70%);
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-orb-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(61,31,107,0.3) 0%, transparent 70%);
+    bottom: 0; right: 10%;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(-30px) translateX(-50%); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(107,63,160,0.12);
+    border: 1px solid var(--border-violet);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.82rem;
+    color: var(--violet-accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--violet-accent);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  h1 .gradient-text {
+    background: linear-gradient(135deg, var(--violet-accent) 0%, #C89FE8 50%, var(--violet-accent) 100%);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--violet);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .btn-primary:hover { background: var(--violet-accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(107,63,160,0.4); }
+  .btn-primary:hover::before { opacity: 1; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 400;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-ghost:hover { border-color: var(--border-violet); color: var(--text); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.8s 0.4s ease both;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    display: block;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.04em; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECCIONES GENERALES ── */
+  section { padding: 6rem 5%; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--violet-accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 540px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .section-header { margin-bottom: 4rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+
+  /* ── PRUEBA SOCIAL ── */
+  #social {
+    background: var(--near-black);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 5%;
+  }
+
+  .social-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .social-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .social-divider { width: 1px; height: 30px; background: var(--border); }
+
+  .result-pills {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .result-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(107,63,160,0.1);
+    border: 1px solid var(--border-violet);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .result-pill .num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--violet-accent);
+  }
+
+  /* ── SERVICIOS ── */
+  #services { max-width: 1200px; margin: 0 auto; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--near-black);
+    padding: 2.5rem;
+    transition: background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(107,63,160,0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .service-card:hover { background: var(--surface); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(107,63,160,0.15);
+    border: 1px solid var(--border-violet);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    color: var(--violet-accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio {
+    background: var(--near-black);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .portfolio-inner { max-width: 1200px; margin: 0 auto; }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .portfolio-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.35s ease;
+    text-decoration: none;
+    display: block;
+    color: var(--text);
+  }
+  .portfolio-card:hover { border-color: var(--border-violet); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(107,63,160,0.15); }
+
+  .portfolio-thumb {
+    height: 200px;
+    background: var(--surface-2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portfolio-thumb-inner {
+    width: 85%;
+    height: 85%;
+    background: var(--near-black);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portfolio-thumb-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(107,63,160,0.08) 0%, transparent 60%);
+  }
+
+  .portfolio-thumb-glow {
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(107,63,160,0.3) 0%, transparent 70%);
+    filter: blur(20px);
+  }
+
+  .portfolio-info { padding: 1.75rem; }
+
+  .portfolio-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .portfolio-type {
+    font-size: 0.72rem;
+    color: var(--violet-accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .portfolio-result {
+    font-size: 0.78rem;
+    color: #5ECA8A;
+    background: rgba(94,202,138,0.1);
+    border: 1px solid rgba(94,202,138,0.2);
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .portfolio-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .portfolio-info p {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .portfolio-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    font-size: 0.83rem;
+    color: var(--violet-accent);
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+  .portfolio-card:hover .portfolio-link { gap: 0.7rem; }
+
+  /* ── PROCESO ── */
+  #proceso { max-width: 1200px; margin: 0 auto; }
+
+  .proceso-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+
+  .proceso-step {
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(107,63,160,0.12);
+    line-height: 1;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .step-desc {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .step-dot {
+    width: 8px; height: 8px;
+    background: var(--violet);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .step-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 100%;
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, var(--violet), transparent);
+    transform: translateY(-50%);
+  }
+
+  /* ── DIFERENCIACIÓN ── */
+  #diferenciacion {
+    background: var(--near-black);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dif-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .dif-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .dif-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.3s;
+  }
+  .dif-item:hover { border-color: var(--border-violet); }
+
+  .dif-check {
+    width: 22px; height: 22px;
+    background: rgba(107,63,160,0.15);
+    border: 1px solid var(--border-violet);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    color: var(--violet-accent);
+    margin-top: 1px;
+  }
+
+  .dif-text strong { display: block; font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .dif-text span { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+
+  .dif-visual {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .dif-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 20%, rgba(107,63,160,0.2) 0%, transparent 70%);
+  }
+
+  .metric-bars { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 1; }
+
+  .metric-bar-row { display: flex; flex-direction: column; gap: 0.4rem; }
+  .metric-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .metric-bar-label strong { color: var(--violet-accent); }
+
+  .metric-bar-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .metric-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--violet), var(--violet-accent));
+    border-radius: 3px;
+    animation: barGrow 1.5s ease both;
+    transform-origin: left;
+  }
+
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* ── SOBRE MÍ ── */
+  #sobre-mi { max-width: 1200px; margin: 0 auto; }
+
+  .sobre-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .sobre-avatar {
+    width: 220px; height: 280px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sobre-avatar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(107,63,160,0.15) 0%, transparent 60%);
+  }
+
+  .avatar-placeholder {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 800;
+    color: rgba(107,63,160,0.25);
+    position: relative;
+    z-index: 1;
+  }
+
+  .sobre-badge {
+    position: absolute;
+    bottom: 1rem; right: -0.5rem;
+    background: var(--violet);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .sobre-content { max-width: 560px; }
+
+  .sobre-content h2 { margin-bottom: 1rem; }
+  .sobre-content p { color: var(--text-muted); font-size: 1rem; font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
+
+  .tech-stack {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .tech-tag {
+    background: rgba(107,63,160,0.08);
+    border: 1px solid var(--border-violet);
+    border-radius: 6px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FAQ ── */
+  #faq {
+    background: var(--near-black);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .faq-list { display: flex; flex-direction: column; gap: 0; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text);
+    gap: 1rem;
+    transition: color 0.2s;
+    user-select: none;
+  }
+  .faq-q:hover { color: var(--violet-accent); }
+
+  .faq-toggle {
+    width: 28px; height: 28px;
+    background: rgba(107,63,160,0.1);
+    border: 1px solid var(--border-violet);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    font-size: 1rem;
+    color: var(--violet-accent);
+  }
+
+  .faq-item.open .faq-toggle { background: var(--violet); transform: rotate(45deg); border-color: var(--violet); color: #fff; }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    font-size: 0.93rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
+
+  /* ── CTA FINAL ── */
+  #cta-final {
+    text-align: center;
+    padding: 8rem 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-orb {
+    position: absolute;
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(107,63,160,0.18) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  .cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-box h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1.25rem; }
+
+  .cta-box p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-note {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--near-black);
+    border-top: 1px solid var(--border);
+    padding: 3rem 5%;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #fff 30%, var(--violet-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .footer-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text-muted); }
+
+  .footer-copy { font-size: 0.82rem; color: var(--text-dim); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: var(--near-black);
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hamburger { display: flex; }
+
+    .dif-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .sobre-inner { grid-template-columns: 1fr; }
+    .sobre-avatar { width: 100%; height: 200px; }
+
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Benex Studio</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://instagram.com" target="_blank" class="nav-cta">Hablemos →</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-badge">Diseño & Desarrollo Web Premium</div>
+
+  <h1>Tu página web debería <span class="gradient-text">traerte clientes</span>, no espantarlos</h1>
+
+  <p class="hero-sub">Diseño y desarrollo webs modernas, rápidas y optimizadas para conversión. No solo se ven bien — venden.</p>
+
+  <div class="hero-actions">
+    <a href="https://calendly.com" target="_blank" class="btn-primary">
+      Agendar llamada gratuita →
+    </a>
+    <a href="#portfolio" class="btn-ghost">Ver portfolio</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-number">+30%</span>
+      <span class="stat-label">Promedio de consultas</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">3</span>
+      <span class="stat-label">Proyectos lanzados</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">Diseño + Desarrollo propio</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">&lt;2s</span>
+      <span class="stat-label">Tiempo de carga</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRUEBA SOCIAL -->
+<section id="social">
+  <div class="social-inner">
+    <span class="social-label">Resultados reales</span>
+    <div class="social-divider"></div>
+    <div class="result-pills">
+      <div class="result-pill"><span class="num">+30%</span> consultas — Hotel</div>
+      <div class="result-pill"><span class="num">+39%</span> ventas — E-commerce</div>
+      <div class="result-pill"><span class="num">+34%</span> conversión — Startup</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-label">Servicios</span>
+    <h2 class="section-title">Todo lo que tu negocio necesita para crecer online</h2>
+    <p class="section-sub">No vendo solo diseño. Construyo sistemas digitales que convierten visitantes en clientes reales.</p>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">✦</div>
+      <h3>Landing Pages de Alta Conversión</h3>
+      <p>Páginas diseñadas con un solo objetivo: convertir. Cada elemento está pensado para guiar al visitante hacia la acción que querés.</p>
+      <span class="service-tag">— Para negocios que quieren más leads</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Desarrollo Web desde Cero</h3>
+      <p>Tu web completa, con diseño único y código limpio. Rápida, responsive y lista para escalar. Sin templates genéricos.</p>
+      <span class="service-tag">— Para proyectos que quieren destacar</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">⚙</div>
+      <h3>Automatización Web</h3>
+      <p>Formularios, reservas, pedidos, integraciones. Automatizamos procesos para que tu negocio funcione solo mientras vos dormís.</p>
+      <span class="service-tag">— Para ahorrar tiempo y escalar</span>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">◈</div>
+      <h3>Rediseño Web</h3>
+      <p>¿Tenés una web que no convierte? La analizamos, detectamos los problemas y la rediseñamos para que empiece a trabajar para vos.</p>
+      <span class="service-tag">— Para webs que no están funcionando</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-inner">
+    <div class="section-header center reveal">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">Proyectos con resultados reales</h2>
+      <p class="section-sub">No trabajo para que se vean bonitos. Trabajo para que generen resultados medibles.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <!-- Proyecto 1 -->
+      <a href="https://asset-manager--8alautaro.replit.app" target="_blank" class="portfolio-card reveal">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner">
+            <div class="portfolio-thumb-glow"></div>
+            <span style="position:relative;z-index:1;font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:rgba(107,63,160,0.4);">01</span>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-meta">
+            <span class="portfolio-type">Landing Page — Hotel</span>
+            <span class="portfolio-result">↑ +30% consultas</span>
+          </div>
+          <h3>Asset Manager — Sistema de Reservas</h3>
+          <p>Landing de reservas para hotel. Objetivo: digitalizar la gestión y aumentar ocupación. Diseño + Desarrollo completo.</p>
+          <span class="portfolio-link">Ver proyecto →</span>
+        </div>
+      </a>
+
+      <!-- Proyecto 2 -->
+      <a href="https://e-commerce-hub--benjagimenez510.replit.app/" target="_blank" class="portfolio-card reveal">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner">
+            <div class="portfolio-thumb-glow" style="left:60%;"></div>
+            <span style="position:relative;z-index:1;font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:rgba(107,63,160,0.4);">02</span>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-meta">
+            <span class="portfolio-type">Landing Page — E-commerce</span>
+            <span class="portfolio-result">↑ +39% ventas</span>
+          </div>
+          <h3>E-commerce Hub — Tienda Online</h3>
+          <p>Plataforma de ventas con flujo de compra automatizado. Objetivo: aumentar conversión y reducir fricciones en checkout.</p>
+          <span class="portfolio-link">Ver proyecto →</span>
+        </div>
+      </a>
+
+      <!-- Proyecto 3 -->
+      <a href="https://flowai-landing-ten.vercel.app/" target="_blank" class="portfolio-card reveal">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner">
+            <div class="portfolio-thumb-glow" style="top:30%;left:30%;"></div>
+            <span style="position:relative;z-index:1;font-family:var(--font-display);font-size:1.8rem;font-weight:800;color:rgba(107,63,160,0.4);">03</span>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-meta">
+            <span class="portfolio-type">Landing Page — Startup</span>
+            <span class="portfolio-result">↑ +34% conversión</span>
+          </div>
+          <h3>FlowAI — Startup de Tecnología</h3>
+          <p>Rediseño completo de landing para startup de IA. Objetivo: aumentar ventas y posicionar la marca como referente.</p>
+          <span class="portfolio-link">Ver proyecto →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-header center reveal">
+    <span class="section-label">Proceso</span>
+    <h2 class="section-title">Simple, claro y sin sorpresas</h2>
+    <p class="section-sub">Trabajo con un proceso probado para que sepas exactamente qué esperar en cada etapa.</p>
+  </div>
+
+  <div class="proceso-grid reveal">
+    <div class="proceso-step">
+      <span class="step-num">01</span>
+      <div class="step-dot"></div>
+      <div class="step-title">Llamada de Discovery</div>
+      <p class="step-desc">Entendemos tu negocio, objetivos y audiencia. Sin formularios, sin burocracia. Una charla directa de 30 minutos.</p>
+    </div>
+    <div class="proceso-step">
+      <span class="step-num">02</span>
+      <div class="step-dot"></div>
+      <div class="step-title">Propuesta & Estrategia</div>
+      <p class="step-desc">Te presento una propuesta con estructura, copy y estrategia de conversión antes de escribir una línea de código.</p>
+    </div>
+    <div class="proceso-step">
+      <span class="step-num">03</span>
+      <div class="step-dot"></div>
+      <div class="step-title">Diseño & Desarrollo</div>
+      <p class="step-desc">Diseño primero, desarrollo después. Revisions incluidas. Vos ves el avance en tiempo real.</p>
+    </div>
+    <div class="proceso-step">
+      <span class="step-num">04</span>
+      <div class="step-dot"></div>
+      <div class="step-title">Lanzamiento & Soporte</div>
+      <p class="step-desc">Deploy en Vercel o Netlify. Te entrego el proyecto con guía de uso y soporte post-lanzamiento incluido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIACIÓN -->
+<section id="diferenciacion">
+  <div class="dif-inner">
+    <div class="reveal">
+      <div class="section-header">
+        <span class="section-label">Por qué Benex Studio</span>
+        <h2 class="section-title">No soy una agencia genérica</h2>
+        <p class="section-sub">Trabajo en proyectos seleccionados. Eso significa que cada cliente recibe atención real, no un template con tu nombre.</p>
+      </div>
+
+      <ul class="dif-list">
+        <li class="dif-item">
+          <div class="dif-check">✓</div>
+          <div class="dif-text">
+            <strong>Diseño + Desarrollo propios</strong>
+            <span>Sin subcontratistas. Hago todo yo: UX, UI y código limpio.</span>
+          </div>
+        </li>
+        <li class="dif-item">
+          <div class="dif-check">✓</div>
+          <div class="dif-text">
+            <strong>Enfoque en conversión, no en premios de diseño</strong>
+            <span>Una web bonita que no convierte es un gasto. La mía trabaja para vos.</span>
+          </div>
+        </li>
+        <li class="dif-item">
+          <div class="dif-check">✓</div>
+          <div class="dif-text">
+            <strong>Velocidad real, no promesas</strong>
+            <span>Mis webs cargan en menos de 2 segundos. El 53% de usuarios abandona si tarda más.</span>
+          </div>
+        </li>
+        <li class="dif-item">
+          <div class="dif-check">✓</div>
+          <div class="dif-text">
+            <strong>Resultados medibles</strong>
+            <span>Entrego webs con métricas claras para que sepas si está funcionando.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="dif-visual reveal">
+      <div style="position:relative;z-index:1;">
+        <p style="font-size:0.75rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;">Resultados promedio</p>
+        <div class="metric-bars">
+          <div class="metric-bar-row">
+            <div class="metric-bar-label"><span>Consultas / Leads</span><strong>+34%</strong></div>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width:74%"></div></div>
+          </div>
+          <div class="metric-bar-row">
+            <div class="metric-bar-label"><span>Velocidad de carga</span><strong>&lt;2s</strong></div>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width:92%;animation-delay:0.2s"></div></div>
+          </div>
+          <div class="metric-bar-row">
+            <div class="metric-bar-label"><span>Mobile-friendly</span><strong>100%</strong></div>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width:100%;animation-delay:0.4s"></div></div>
+          </div>
+          <div class="metric-bar-row">
+            <div class="metric-bar-label"><span>Tasa de rebote reducida</span><strong>−28%</strong></div>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width:60%;animation-delay:0.6s"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="sobre-inner reveal">
+    <div class="sobre-avatar">
+      <div class="avatar-placeholder">B.</div>
+      <div class="sobre-badge">Diseñador & Dev</div>
+    </div>
+
+    <div class="sobre-content">
+      <span class="section-label">Sobre mí</span>
+      <h2 class="section-title">Soy Benja, y construyo webs que venden</h2>
+      <p>Combino diseño UX/UI y desarrollo para crear experiencias web que no solo lucen profesionales, sino que convierten visitantes en clientes reales.</p>
+      <p>Me especializo en negocios que quieren una presencia digital que trabaje por ellos las 24 horas. Trabajo con pocos clientes a la vez para garantizar calidad absoluta en cada proyecto.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML / CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">UX / UI</span>
+        <span class="tech-tag">Vercel</span>
+        <span class="tech-tag">Figma</span>
+        <span class="tech-tag">Copywriting</span>
+        <span class="tech-tag">CRO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="section-header center reveal">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto cuesta una web? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Cada proyecto es único. El precio depende del alcance, complejidad y funcionalidades. Agendá una llamada gratuita y te doy un presupuesto claro sin vueltas en 24hs.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tarda en estar lista mi web? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Una landing page tarda entre 5 y 10 días hábiles. Un sitio completo entre 2 y 4 semanas. Siempre te doy un plazo claro al inicio y lo cumplo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito saber de tecnología para trabajar con vos? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Para nada. Me encargo de todo el proceso técnico. Vos solo necesitás tener claro qué querés lograr con tu negocio, yo me encargo del resto.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo modificar la web después de que esté lista? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Sí. Te entrego el proyecto con documentación y soporte. Si querés cambios después del lanzamiento, podemos acordar un plan de mantenimiento mensual o revisiones puntuales.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Hacés el hosting y el dominio también? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Sí, te ayudo a configurarlo todo. Trabajo con Vercel y Netlify para el hosting (rápidos y confiables) y te guío para adquirir tu dominio si no tenés uno.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuál es el primer paso? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Agendá una llamada gratuita de 30 minutos. Sin compromiso. Me contás tu proyecto y yo te digo honestamente si puedo ayudarte y cómo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-orb"></div>
+  <div class="cta-box reveal">
+    <span class="section-label">¿Listo para empezar?</span>
+    <h2 class="section-title">Tu próxima web debería <span class="gradient-text">pagar sola</span></h2>
+    <p>Agendá una llamada gratuita de 30 minutos. Sin compromiso, sin venta agresiva. Solo una charla para ver si hay fit.</p>
+    <div class="cta-actions">
+      <a href="https://calendly.com" target="_blank" class="btn-primary" style="font-size:1rem;padding:1rem 2.2rem;">
+        Agendar llamada gratuita →
+      </a>
+      <a href="https://instagram.com" target="_blank" class="btn-ghost">
+        Escribir por Instagram
+      </a>
+    </div>
+    <p class="cta-note">Respondo en menos de 24 horas · Llamada de 30 minutos · Sin compromiso</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Benex Studio</a>
+    <ul class="footer-links">
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Benex Studio · Diseñado y desarrollado con ✦</p>
+  </div>
+</footer>
+
+<script>
+  // hamburger
+  const ham = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  ham.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.background =
+      window.scrollY > 60 ? 'rgba(8,8,16,0.95)' : 'rgba(8,8,16,0.7)';
+  });
+</script>
+</body>
+</html>
